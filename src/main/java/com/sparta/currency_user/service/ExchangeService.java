@@ -28,18 +28,18 @@ public class ExchangeService {
     private final CurrencyRepository currencyRepository;
 
     public ExchangeResponseDto create(CreateExchangeRequestDto dto) {
-        Optional<Currency> currency = currencyRepository.findById(dto.getCurrency_id());
+        Optional<Currency> currency = currencyRepository.findById(dto.getCurrencyId());
         if (currency.isEmpty()) {
             throw new RestApiException(CurrencyErrorCode.NOT_FOUND);
         }
 
-        Optional<User> user = userRepository.findById(dto.getUser_id());
+        Optional<User> user = userRepository.findById(dto.getUserId());
         if(user.isEmpty()) {
             throw new RestApiException(UserErrorCode.NOT_FOUND);
         }
 
         Exchange exchange = new Exchange(currency.get(),user.get());
-        exchange.updateAmount(dto.getAmount_in_krw());
+        exchange.updateAmount(dto.getAmountInKrw());
 
 
         Exchange savedExchage = exchangeRepository.save(exchange);

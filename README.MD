@@ -8,18 +8,24 @@
     - PathVariable : 없음
     - RequestBody :
 
-      |   | 이름          | 타입     | 필수여부 | 설명           |
-      |---|-------------|--------|------|--------------|
-      | 1 | user_id     | Long   | 필수   | 사용자 식별자      |
-      | 2 | currency_id | Long   | 필수   | 환전 대상 통화 식별자 |
-      | 3 | money       | String | 필수   | 환전 전 금액      |
+      |   | 이름          | 타입   | 필수여부 | 설명           |
+      |---|-------------|------|------|--------------|
+      | 1 | userId     | Long | 필수   | 사용자 식별자      |
+      | 2 | currencyId | Long | 필수   | 환전 대상 통화 식별자 |
+      | 3 | amountInKrw       | int  | 필수   | 환전 전 금액      |
 
 
 - Response
 
-  |   | 이름          | 타입     | 설명        |
-      |---|-------------|--------|-----------|
-  | 1 | exchange_id | Long   | 환전 요청 식별자 |
+  |   | 이름                    | 타입     | 설명        |
+      |---|-----------------------|--------|-----------|
+  | 1 | exchangeId           | Long   | 환전 요청 식별자 |
+  | 2 | userId               | Long   | 사용자 식별자   |
+  | 3 | currencyId           | Long   | 환전 대상 식별자 |
+  | 4 | amountInKrw         | Long   | 환전 후 식별자  |
+  | 4 | amountAfterExchange | Long   | 환전 후 식별자  |
+  | 5 | status                | Long   | 환전 요청 식별자 |
+  | 6 | modifiedAt           | Long   | 환전 요청 식별자 |
 
 ### 조회
 
@@ -30,7 +36,7 @@
 
       |   | 이름          | 타입     | 필수여부 | 설명           |
             |---|-------------|--------|------|--------------|
-      | 1 | user_id     | Long   | 필수   | 사용자 식별자      |
+      | 1 | userId     | Long   | 필수   | 사용자 식별자      |
     - RequestBody : 없음
 
 
@@ -38,13 +44,13 @@
 
   |   | 이름                    | 타입     | 설명        |
     |---|-----------------------|--------|-----------|
-  | 1 | exchange_id           | Long   | 환전 요청 식별자 |
-  | 2 | user_id               | Long   | 사용자 식별자   |
-  | 3 | currency_id           | Long   | 환전 대상 식별자 |
-  | 4 | amount_in_krw         | Long   | 환전 후 식별자  |
-  | 4 | amount_after_exchange | Long   | 환전 후 식별자  |
+  | 1 | exchangeId           | Long   | 환전 요청 식별자 |
+  | 2 | userId               | Long   | 사용자 식별자   |
+  | 3 | currencyId           | Long   | 환전 대상 식별자 |
+  | 4 | amountInKrw         | Long   | 환전 후 식별자  |
+  | 4 | amountAfterExchange | Long   | 환전 후 식별자  |
   | 5 | status                | Long   | 환전 요청 식별자 |
-  | 6 | modified_at           | Long   | 환전 요청 식별자 |
+  | 6 | modifiedAt           | Long   | 환전 요청 식별자 |
 
 
 ### 환전 상태 취소
@@ -56,7 +62,7 @@
 
       |   | 이름          | 타입     | 필수여부 | 설명     |
             |---|-------------|--------|------|--------|
-      | 1 | exchange_id | Long   | 필수   | 환전 식별자 |
+      | 1 | exchangeId | Long   | 필수   | 환전 식별자 |
     - RequestBody : 없음
 
 
@@ -64,13 +70,13 @@
 
   |   | 이름                    | 타입     | 설명        |
       |---|-----------------------|--------|-----------|
-  | 1 | exchange_id           | Long   | 환전 요청 식별자 |
-  | 2 | user_id               | Long   | 사용자 식별자   |
-  | 3 | currency_id           | Long   | 환전 대상 식별자 |
-  | 4 | amount_in_krw         | Long   | 환전 후 식별자  |
-  | 4 | amount_after_exchange | Long   | 환전 후 식별자  |
+  | 1 | exchangeId           | Long   | 환전 요청 식별자 |
+  | 2 | userId               | Long   | 사용자 식별자   |
+  | 3 | currencyId           | Long   | 환전 대상 식별자 |
+  | 4 | amountInKrw         | Long   | 환전 후 식별자  |
+  | 4 | amountAfterExchange | Long   | 환전 후 식별자  |
   | 5 | status                | Long   | 환전 요청 식별자 |
-  | 6 | modified_at           | Long   | 환전 요청 식별자 |
+  | 6 | modifiedAt           | Long   | 환전 요청 식별자 |
 
 
 ### 삭제
@@ -82,7 +88,7 @@
 
       |   | 이름          | 타입     | 필수여부 | 설명           |
             |---|-------------|--------|------|--------------|
-      | 1 | user_id     | Long   | 필수   | 사용자 식별자      |
+      | 1 | userId     | Long   | 필수   | 사용자 식별자      |
     - RequestBody : 없음
 
 

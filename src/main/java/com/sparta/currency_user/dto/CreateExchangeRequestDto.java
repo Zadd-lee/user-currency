@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 public class CreateExchangeRequestDto {
 
     @NotNull
-    private Long user_id;
+    private Long userId;
 
     @NotNull
-    private Long currency_id;
+    private Long currencyId;
 
     @NotNull
     @Positive
-    private int amount_in_krw;
+    private int amountInKrw;
 
 }
