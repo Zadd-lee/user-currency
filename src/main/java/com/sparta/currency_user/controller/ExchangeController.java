@@ -7,10 +7,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/exchanges")
@@ -23,4 +22,11 @@ public class ExchangeController {
         ExchangeResponseDto responseDto = service.create(dto);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<ExchangeResponseDto>> getAll(@PathVariable Long userId) {
+        List<ExchangeResponseDto> responseDtos = service.findByUserId(userId);
+        return new ResponseEntity<>(responseDtos, HttpStatus.OK);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.sparta.currency_user.service;
 
 import com.sparta.currency_user.constant.CurrencyErrorCode;
+import com.sparta.currency_user.constant.ExchangeErrorCode;
 import com.sparta.currency_user.constant.UserErrorCode;
 import com.sparta.currency_user.dto.CreateExchangeRequestDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
@@ -14,6 +15,8 @@ import com.sparta.currency_user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,5 +44,26 @@ public class ExchangeService {
         Exchange savedExchage = exchangeRepository.save(exchange);
         return new ExchangeResponseDto(savedExchage);
 
+    }
+
+    public List<ExchangeResponseDto> findByUserId(Long userId) {
+        //검증
+        Optional<User> user = userRepository.findById(userId);
+        if(user.isEmpty()) {
+            throw new RestApiException(UserErrorCode.NOT_FOUND);
+        }
+
+        //조회
+        List<Exchange> exchangesByUserId = exchangeRepository.findAllByUserId(userId);
+
+        if(exchangesByUserId.isEmpty()) {
+            throw new RestApiException(ExchangeErrorCode.NOT_FOUND);
+        }
+
+        List<ExchangeResponseDto> dtoList = new ArrayList<>();
+        for (Exchange exchange : exchangesByUserId) {
+            dtoList.add(new ExchangeResponseDto(exchange));
+        }
+        return dtoList;
     }
 }
