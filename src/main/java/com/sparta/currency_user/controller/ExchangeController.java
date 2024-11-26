@@ -27,8 +27,8 @@ public class ExchangeController {
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<ExchangeResponseDto>> getAll(@PathVariable Long userId) {
+    @GetMapping("/details/{userId}")
+    public ResponseEntity<List<ExchangeResponseDto>> findById(@PathVariable Long userId) {
         List<ExchangeResponseDto> responseDtos = exchangeService.findByUserId(userId);
         return new ResponseEntity<>(responseDtos, HttpStatus.OK);
     }
