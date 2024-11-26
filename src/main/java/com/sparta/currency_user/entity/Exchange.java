@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -19,9 +18,30 @@ public class Exchange extends  TimeEntity{
     private Float amountAfterExchange;
     private String status;
 
-    @OneToMany(mappedBy = "exchange", cascade = CascadeType.REMOVE)
-    List<Currency> currencies = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "currency_id")
+    private Currency currency;
 
-    @OneToMany(mappedBy = "exchange", cascade = CascadeType.REMOVE)
-    List<User> users = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+
+    public Exchange(Currency currency, User user) {
+        this.currency = currency;
+        this.user = user;
+    }
+
+    public void updateAmount(Integer amountInKRW) {
+        this.amountInKRW = amountInKRW;
+
+        BigDecimal exchangeRate = currency.getExchangeRate();
+        calculateAfterExchage(exchangeRate);
+    }
+
+    private void calculateAfterExchage(BigDecimal exchangeRate) {
+
+    }
+
 }

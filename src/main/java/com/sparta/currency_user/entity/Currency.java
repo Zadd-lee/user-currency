@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,9 +18,8 @@ public class Currency extends TimeEntity{
     private BigDecimal exchangeRate;
     private String symbol;
 
-    @ManyToOne
-    @JoinColumn(name = "exchange_id")
-    private Exchange exchange;
+    @OneToMany(mappedBy = "currency",cascade = CascadeType.REMOVE)
+    private List<Exchange> exchangeList = new ArrayList<>();
 
     public Currency(String currencyName, BigDecimal exchangeRate, String symbol) {
         this.currencyName = currencyName;
