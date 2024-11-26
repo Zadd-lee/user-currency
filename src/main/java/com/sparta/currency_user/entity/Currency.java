@@ -1,9 +1,6 @@
 package com.sparta.currency_user.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -18,6 +15,10 @@ public class Currency extends TimeEntity{
     private String currencyName;
     private BigDecimal exchangeRate;
     private String symbol;
+
+    @ManyToOne
+    @JoinColumn(name = "exchange_id")
+    private Exchange exchange;
 
     public Currency(String currencyName, BigDecimal exchangeRate, String symbol) {
         this.currencyName = currencyName;

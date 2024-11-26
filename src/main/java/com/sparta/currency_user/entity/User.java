@@ -13,6 +13,10 @@ public class User extends TimeEntity{
     private String name;
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "exchange_id")
+    private Exchange exchange;
+
     public User(String name, String email) {
         this.name = name;
         this.email = email;
