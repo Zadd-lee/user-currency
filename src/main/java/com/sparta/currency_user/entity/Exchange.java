@@ -1,10 +1,9 @@
 package com.sparta.currency_user.entity;
 
+import com.sparta.currency_user.utils.ExchangeCalculator;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -31,17 +30,12 @@ public class Exchange extends  TimeEntity{
     public Exchange(Currency currency, User user) {
         this.currency = currency;
         this.user = user;
+        this.status = "normal";
     }
 
     public void updateAmount(Integer amountInKRW) {
         this.amountInKRW = amountInKRW;
-
-        BigDecimal exchangeRate = currency.getExchangeRate();
-        calculateAfterExchage(exchangeRate);
-    }
-
-    private void calculateAfterExchage(BigDecimal exchangeRate) {
-
+        this.amountAfterExchange = ExchangeCalculator.calculateInt(amountInKRW, currency.getExchangeRate()).floatValue();
     }
 
 }
