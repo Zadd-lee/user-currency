@@ -1,5 +1,6 @@
 package com.sparta.currency_user.entity;
 
+import com.sparta.currency_user.constant.Status;
 import com.sparta.currency_user.utils.ExchangeCalculator;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,12 +31,16 @@ public class Exchange extends  TimeEntity{
     public Exchange(Currency currency, User user) {
         this.currency = currency;
         this.user = user;
-        this.status = "normal";
+        this.status = Status.USE.getStatus();
     }
 
     public void updateAmount(Integer amountInKRW) {
         this.amountInKRW = amountInKRW;
         this.amountAfterExchange = ExchangeCalculator.calculateInt(amountInKRW, currency.getExchangeRate()).floatValue();
+    }
+
+    public void updateStatus(Status status) {
+        this.status = status.getStatus();
     }
 
 }

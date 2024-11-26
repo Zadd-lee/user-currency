@@ -29,4 +29,10 @@ public class ExchangeController {
         return new ResponseEntity<>(responseDtos, HttpStatus.OK);
     }
 
+    @PatchMapping("/{exchangeId}")
+    public ResponseEntity<ExchangeResponseDto> cancel(@PathVariable Long exchangeId) {
+        ExchangeResponseDto responseDto = service.cancel(exchangeId);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.sparta.currency_user.service;
 
 import com.sparta.currency_user.constant.CurrencyErrorCode;
 import com.sparta.currency_user.constant.ExchangeErrorCode;
+import com.sparta.currency_user.constant.Status;
 import com.sparta.currency_user.constant.UserErrorCode;
 import com.sparta.currency_user.dto.CreateExchangeRequestDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
@@ -65,5 +66,15 @@ public class ExchangeService {
             dtoList.add(new ExchangeResponseDto(exchange));
         }
         return dtoList;
+    }
+
+    public ExchangeResponseDto cancel(Long exchangeId) {
+        //검증
+        Exchange exchange = exchangeRepository.findById(exchangeId)
+                .orElseThrow(() -> new RestApiException(ExchangeErrorCode.NOT_FOUND));
+        exchange.updateStatus(Status.NOT_USE);
+
+        ExchangeResponseDto dto = new ExchangeResponseDto(exchange);
+        return dto;
     }
 }
