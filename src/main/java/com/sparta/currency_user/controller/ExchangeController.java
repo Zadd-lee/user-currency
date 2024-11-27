@@ -1,6 +1,7 @@
 package com.sparta.currency_user.controller;
 
 import com.sparta.currency_user.dto.CreateExchangeRequestDto;
+import com.sparta.currency_user.dto.ExchangeGroupsInfoResponseDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
 import com.sparta.currency_user.service.ExchangeService;
 import com.sparta.currency_user.service.UserService;
@@ -44,5 +45,12 @@ public class ExchangeController {
         userService.deleteUserById(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<ExchangeGroupsInfoResponseDto> findAll(@PathVariable Long userId) {
+        ExchangeGroupsInfoResponseDto responseDto = exchangeService.findAllByUserId(userId);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
 
 }

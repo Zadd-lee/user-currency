@@ -5,6 +5,7 @@ import com.sparta.currency_user.constant.ExchangeErrorCode;
 import com.sparta.currency_user.constant.Status;
 import com.sparta.currency_user.constant.UserErrorCode;
 import com.sparta.currency_user.dto.CreateExchangeRequestDto;
+import com.sparta.currency_user.dto.ExchangeGroupsInfoResponseDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
 import com.sparta.currency_user.entity.Currency;
 import com.sparta.currency_user.entity.Exchange;
@@ -75,6 +76,12 @@ public class ExchangeService {
         exchange.updateStatus(Status.NOT_USE);
 
         ExchangeResponseDto dto = new ExchangeResponseDto(exchange);
+        return dto;
+    }
+
+
+    public ExchangeGroupsInfoResponseDto findAllByUserId(Long userId) {
+        ExchangeGroupsInfoResponseDto dto = exchangeRepository.findAllInfoByUserId(userId);
         return dto;
     }
 }
