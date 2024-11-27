@@ -36,7 +36,7 @@ public class Exchange extends  TimeEntity{
 
     public void updateAmount(Integer amountInKRW) {
         this.amountInKRW = amountInKRW;
-        this.amountAfterExchange = ExchangeCalculator.calculateInt(amountInKRW, currency.getExchangeRate()).floatValue();
+        this.amountAfterExchange = ExchangeCalculator.calculateInt(amountInKRW, currency).floatValue();
     }
 
     public void updateStatus(Status status) {
