@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class ValidateDataBeAtLaunch {
+public class ValidateDataAtLaunch {
     private final CurrencyRepository currencyRepository;
 
     @PostConstruct
