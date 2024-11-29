@@ -36,6 +36,7 @@ public class Exchange extends  TimeEntity{
 
     public void updateAmount(Integer amountInKRW) {
         this.amountInKRW = amountInKRW;
+        //한화와 환율 정보값을 이용해 환전후 금액을 계산
         this.amountAfterExchange = ExchangeCalculator.calculateInt(amountInKRW, currency).floatValue();
     }
 

@@ -9,6 +9,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * 스프링이 구동되는 시점에
+ * Currency 테이블의 데이터가
+ * 정상적인 값을 가지는지 확인
+ */
 @Component
 @Slf4j
 @RequiredArgsConstructor
